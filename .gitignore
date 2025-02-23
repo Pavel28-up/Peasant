@@ -367,7 +367,6 @@ FodyWeavers.xsd
 *.bin
 /Library/
 /Temp/
-/Assets/VSCode
 /out
 .vscode/
 *.sln
@@ -377,5 +376,3 @@ FodyWeavers.xsd
 *.iml
 .DotSettings.user
 .fake
-/key.text
-/ser.keystore
