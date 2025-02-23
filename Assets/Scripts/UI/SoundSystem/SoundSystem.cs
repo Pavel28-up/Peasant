@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class SoundSystem : MonoBehaviour
 {
+    public static SoundSystem Instance;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(this);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

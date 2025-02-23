@@ -33,7 +33,7 @@ public class MusicOption : MonoBehaviour
         PlayerPrefs.SetFloat("ValumeMusic", musicValume * 100);
         #endregion
 
-        SoundSystem.Instance.ToValumeMusic(musicValume * 100);
+        //SoundSystem.Instance.ToValumeMusic(musicValume * 100);
 
         soundValume = sound.value;
 
@@ -41,6 +41,6 @@ public class MusicOption : MonoBehaviour
         PlayerPrefs.SetFloat("ValumeSound", soundValume * 100);
         #endregion
 
-        SoundSystem.Instance.ToValumeSounds(soundValume * 100);
+        //SoundSystem.Instance.ToValumeSounds(soundValume * 100);
     }
 }
