@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,37 +8,55 @@ public class MusicOption : MonoBehaviour
     public Slider music;
     public Slider sound;
 
+    // Значение громкости музики и звуков
     private float musicValume = 100f;
     private float soundValume = 100f;
 
     void Awake()
     {
-        musicValume = PlayerPrefs.GetFloat("ValumeMusic");
-        soundValume = PlayerPrefs.GetFloat("ValumeSound");
+        // Проверяем наличия ключа и присваеваем сохраненное значение
+        if (PlayerPrefs.HasKey("ValumeMusic"))
+            musicValume = PlayerPrefs.GetFloat("ValumeMusic");
+        // Если ключ не найден присваеваем значение 
+        else
+            musicValume = 100f;
+
+        // Проверяем наличия ключа и присваеваем сохраненное значение
+        if (PlayerPrefs.HasKey("ValumeSound"))
+            soundValume = PlayerPrefs.GetFloat("ValumeSound");
+        // Если ключ не найден присваеваем значение
+        else
+            soundValume = 100f;
     }
 
     void Start()
     {
-        music.value = musicValume / 100;
-        sound.value = soundValume / 100;
+        // Присваеваем значение переменной в бар
+        music.value = musicValume;
+        // Присваеваем значение переменной в бар
+        sound.value = soundValume;
     }
 
     void Update()
     {
+        // Получаем значение бара
         musicValume = music.value;
 
         #region SAVEMUSICVALUME
-        PlayerPrefs.SetFloat("ValumeMusic", musicValume * 100);
+        // Сохраняем значение умноженное на 100
+        PlayerPrefs.SetFloat("ValumeMusic", musicValume);
         #endregion
 
-        //SoundSystem.Instance.ToValumeMusic(musicValume * 100);
+        SoundSystem.Instance.ToValumeMusic(musicValume);
 
+        // Получаем значение бара
         soundValume = sound.value;
 
         #region SAVESOUNDVALUME
-        PlayerPrefs.SetFloat("ValumeSound", soundValume * 100);
+        // Сохраняем значение умноженное на 100
+        PlayerPrefs.SetFloat("ValumeSound", soundValume);
         #endregion
 
-        //SoundSystem.Instance.ToValumeSounds(soundValume * 100);
+        SoundSystem.Instance.ToValumeSounds(soundValume);
     }
 }

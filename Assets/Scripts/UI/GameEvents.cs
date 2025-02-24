@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
+// Скрипт событий игры
 public class GameEvents : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameEvents Instance;
+
+    public event Action OnButton;
+
+    private void Awake()
     {
-        
+        if (Instance == null) Instance = this;
+        else Destroy(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InvokeButton()
     {
-        
+        OnButton?.Invoke();
     }
 }
