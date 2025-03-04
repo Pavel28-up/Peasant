@@ -43,7 +43,7 @@ public class MusicOption : MonoBehaviour
         musicValume = music.value;
 
         #region SAVEMUSICVALUME
-        // Сохраняем значение умноженное на 100
+        // Сохраняем значение умноженное
         PlayerPrefs.SetFloat("ValumeMusic", musicValume);
         #endregion
 
@@ -53,7 +53,7 @@ public class MusicOption : MonoBehaviour
         soundValume = sound.value;
 
         #region SAVESOUNDVALUME
-        // Сохраняем значение умноженное на 100
+        // Сохраняем значение умноженное
         PlayerPrefs.SetFloat("ValumeSound", soundValume);
         #endregion
 

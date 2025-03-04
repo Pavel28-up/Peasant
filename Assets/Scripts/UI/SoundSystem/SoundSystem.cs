@@ -7,8 +7,8 @@ public class SoundSystem : MonoBehaviour
 
     public AudioSource clipMusic;
 
-    [SerializeField] AudioClip ratchetButtonClip;
-    AudioSource _ratchetButtonSound;
+    [SerializeField] AudioClip buttonClip;
+    AudioSource _buttonSound;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +16,22 @@ public class SoundSystem : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(this);
 
-        _ratchetButtonSound = ConvertClipToConponent(ratchetButtonClip);
+        OnEnable();
 
-        ToValumeMusic(PlayerPrefs.GetFloat("ValumeMusic"));
-        ToValumeSounds(PlayerPrefs.GetFloat("ValumeSound"));
+        if (buttonClip)
+            _buttonSound = ConvertClipToConponent(buttonClip);
+
+        if (PlayerPrefs.HasKey("ValumeMusic"))
+            ToValumeMusic(PlayerPrefs.GetFloat("ValumeMusic"));
+
+        if (PlayerPrefs.HasKey("ValumeSound"))
+        {
+            if (buttonClip)
+            {
+                Debug.Log("Sound");
+                ToValumeSounds(PlayerPrefs.GetFloat("ValumeSound"));
+            }
+        }
     }
 
     private void OnEnable()
@@ -34,7 +46,9 @@ public class SoundSystem : MonoBehaviour
 
     private void PlayRatchetButton()
     {
-        _ratchetButtonSound.PlayOneShot(ratchetButtonClip);
+        Debug.Log("sound");
+        if (buttonClip)
+            _buttonSound.PlayOneShot(buttonClip);
     }
 
     private AudioSource ConvertClipToConponent(AudioClip clipToConvert)
@@ -53,6 +67,7 @@ public class SoundSystem : MonoBehaviour
 
     public void ToValumeSounds(float volume)
     {
-        _ratchetButtonSound.volume = volume / 100f;
+        //Debug.Log(volume);
+        _buttonSound.volume = volume / 100f;
     }
 }

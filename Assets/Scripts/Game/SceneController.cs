@@ -23,21 +23,16 @@ public class SceneController : MonoBehaviour
         int id = SceneManager.GetActiveScene().buildIndex;
         // Увелечение индекса на 1
         id++;
+        PlayerPrefs.SetInt("SceneID", id);
         // Закрузка сцены по индексу
-        SceneManager.LoadScene(id);
+        SceneManager.LoadScene(0);
     }
 
     // Перегрузка метод закгрузки следующей сцены по индексу
     public static void NextScene(int id)
     {
+        PlayerPrefs.SetInt("SceneID", id);
         // Закрузка сцены по индексу
-        SceneManager.LoadScene(id);
-    }
-
-    // Перегрузка метод закгрузки следующей сцены по имени
-    public static void NextScene(string nameScene)
-    {
-        // Закрузка сцены по индексу
-        SceneManager.LoadScene(nameScene);
+        SceneManager.LoadScene(0);
     }
 }

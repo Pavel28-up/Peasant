@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     {
         isOpened = true;
         gameObject.SetActive(isOpened);
-        GameEvents.Instance.InvokeButton();
+        GameEvents.Instance.InvokeButton(); // событие
     }
 
     public void Close()
