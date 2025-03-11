@@ -368,9 +368,9 @@ FodyWeavers.xsd
 /Library/
 /Temp/
 /out
-*.sln
+#*.sln
 *.userprefs
-*.csproj
+#*.csproj
 .idea
 *.iml
 .DotSettings.user

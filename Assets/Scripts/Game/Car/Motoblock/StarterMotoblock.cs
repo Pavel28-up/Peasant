@@ -9,6 +9,7 @@ public class StarterMotoblock : MonoBehaviour
 
     public float starterAmount;
     public float secondsStarter;
+    public bool broken;
 
     private void Start()
     {
@@ -19,27 +20,32 @@ public class StarterMotoblock : MonoBehaviour
     public void OnChangedStarter()
     {
         starterAmount = starter.value;
-        CancelInvoke();
-        if (starterAmount > 0)
+
+        if (!broken)
         {
-            InvokeRepeating(nameof(StarterTime), 0, 0);
+            if (starterAmount > 0)
+            {
+                InvokeRepeating(nameof(StarterTime), 0, 0);
+            }
+        }
+        else
+        {
+            starter.interactable = false;
         }
     }
 
     void StarterTime()
     {
-        Debug.Log(starterAmount);
         if (starterAmount > 0)
         {
-            //starter.interactable = false;
+            starter.interactable = false;
             starterAmount -= 100 / secondsStarter * Time.deltaTime;
             starter.value = starterAmount;
-        }
-        else
-        {
-            starterAmount = 0;
-            //starter.interactable = true;
-            CancelInvoke();
+            if (starterAmount == 0)
+            {
+                starter.interactable = true;
+                CancelInvoke();
+            }
         }
     }
 }
