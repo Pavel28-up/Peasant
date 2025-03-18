@@ -367,11 +367,11 @@ FodyWeavers.xsd
 *.bin
 /Library/
 /Temp/
-/out
+#/out
 #*.sln
-*.userprefs
+#*.userprefs
 #*.csproj
-.idea
-*.iml
-.DotSettings.user
-.fake
+#.idea
+#*.iml
+#.DotSettings.user
+#.fake
