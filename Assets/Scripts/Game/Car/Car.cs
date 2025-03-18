@@ -1,9 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Car : MonoBehaviour
 {
+    public Wheel[] frontWhels;
+    public Wheel[] backWhels;
+    public Wheel[] tractorBackWhels;
+
+    public Rigidbody rb;
+    public Transform motobloc;
+
+    public float acceleration;
+    public float maxSteeringAngle;
+
+    [Range(-1, 1)]
+    public float forward;
+
+    [Range(-1, 1)]
+    public float turn;
+
+    [Range(-1, 1)]
+    public float brake;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+        BrackeOnMove();
+    }
+
+    void Move()
+    {
+        foreach (var wheel in frontWhels)
+        {
+            wheel.collider.motorTorque = forward * acceleration;
+            //wheel.collider.steerAngle = Mathf.Lerp(wheel.collider.steerAngle,
+            //    turn * maxSteeringAngle, 0.5f);
+        }
+        motobloc.Rotate(0, 
+                turn * maxSteeringAngle, 0);
+    }
+
+    void BrackeOnMove()
+    {
+        foreach (var wheel in frontWhels)
+        {
+            wheel.collider.brakeTorque = brake;
+        }
+    }
 
     public void ShowInventory(CarScriptableObject car)
     {
