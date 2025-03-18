@@ -363,8 +363,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .vs
-*.log
-*.bin
+#*.log
+#*.bin
 /Library/
 /Temp/
 #/out
