@@ -11,6 +11,7 @@ public class Car : MonoBehaviour
 
     public float acceleration;
     public float maxSteeringAngle;
+    public float brakeForce;
 
     [Range(-1, 1)]
     public float forward;
@@ -39,7 +40,14 @@ public class Car : MonoBehaviour
             wheel.collider.motorTorque = forward * acceleration;
             //wheel.collider.steerAngle = Mathf.Lerp(wheel.collider.steerAngle,
             //    turn * maxSteeringAngle, 0.5f);
+            wheel.collider.brakeTorque = brake * brakeForce;
         }
+
+        foreach (var wheel in backWhels)
+        {
+            wheel.collider.brakeTorque = brake * brakeForce;
+        }
+
         motobloc.Rotate(0, 
                 turn * maxSteeringAngle, 0);
     }
@@ -48,7 +56,7 @@ public class Car : MonoBehaviour
     {
         foreach (var wheel in frontWhels)
         {
-            wheel.collider.brakeTorque = brake;
+            wheel.collider.brakeTorque = brake * brakeForce;
         }
     }
 
